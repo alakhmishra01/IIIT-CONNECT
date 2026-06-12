@@ -1,0 +1,17 @@
+{
+  "college": "IIIT Delhi",
+  "slug": "iiit-delhi",
+  "_comment": "PLACEHOLDER — replace with real JoSAA final-round data from josaa.nic.in",
+  "branches": [
+    {
+      "name": "Computer Science and Engineering",
+      "code": "CSE",
+      "rounds": [
+        { "year": 2021, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 },
+        { "year": 2022, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 },
+        { "year": 2023, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 },
+        { "year": 2024, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 }
+      ]
+    }
+  ]
+}

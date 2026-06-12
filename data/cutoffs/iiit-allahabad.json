@@ -1,0 +1,17 @@
+{
+  "college": "IIIT Allahabad",
+  "slug": "iiit-allahabad",
+  "_comment": "PLACEHOLDER — replace with real JoSAA final-round data from josaa.nic.in",
+  "branches": [
+    {
+      "name": "Information Technology",
+      "code": "IT",
+      "rounds": [
+        { "year": 2021, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 },
+        { "year": 2022, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 },
+        { "year": 2023, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 },
+        { "year": 2024, "round": 6, "category": "OPEN", "opening": 0, "closing": 0 }
+      ]
+    }
+  ]
+}
