@@ -16,7 +16,7 @@ export default function CutoffChart({ data }: { data: CutoffData }) {
       const existing = byYear.get(r.year);
       if (!existing || r.round > 0) byYear.set(r.year, { year: r.year, opening: r.opening, closing: r.closing });
     }
-    return [...byYear.values()].sort((a, b2) => a.year - b2.year);
+    return Array.from(byYear.values()).sort((a, b2) => a.year - b2.year);
   }, [data, branch, category]);
 
   return (
