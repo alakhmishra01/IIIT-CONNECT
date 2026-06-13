@@ -39,11 +39,14 @@ export default function OnboardingPage() {
     if (available === false) { setMsg("Username taken."); return; }
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
-    const { error } = await supabase.from("profiles").update({
+    // Ensure profile row exists and college is verified
+    await fetch("/api/setup-profile", { method: "POST" });
+    const { error } = await supabase.from("profiles").upsert({
+      id: user.id,
       username, full_name: fullName, branch,
       graduation_year: gradYear ? Number(gradYear) : null,
       bio: bio || null, linkedin_url: linkedin || null, instagram_url: instagram || null,
-    }).eq("id", user.id);
+    });
     if (error) setMsg(error.message);
     else { router.push(`/profile/${username}`); router.refresh(); }
   }

@@ -44,6 +44,10 @@ export default async function CollegePage({ params }: { params: Promise<{ slug: 
       <header>
         <h1 className="text-4xl font-bold">{college.name}</h1>
         <p className="mt-2 text-slate-400">{college.location} · Established {college.established}</p>
+        <div className="mt-4 flex gap-3">
+          <Link href={`/colleges/${slug}/chat`} className="btn-cta text-sm">💬 Join College Chat</Link>
+          <Link href={`/colleges/${slug}/moderation`} className="btn-primary text-sm">🛡️ Moderation</Link>
+        </div>
       </header>
 
       {cutoffs && (

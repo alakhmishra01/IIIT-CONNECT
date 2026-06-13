@@ -11,23 +11,22 @@ export async function POST() {
     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
   }
 
-  // Check if already verified
-  const { data: profile } = await supabase.from("profiles").select("verification_status, college_slug").eq("id", user.id).single();
-  if (profile?.verification_status === "verified" && profile?.college_slug) {
-    return NextResponse.json({ status: "already_verified", college_slug: profile.college_slug });
-  }
-
-  // Detect college from email and update via service role
   const college = detectCollegeFromEmail(user.email);
   const service = createServiceClient();
 
-  await service.from("profiles").update({
+  // Upsert — creates the profile if it doesn't exist, updates if it does
+  const { error } = await service.from("profiles").upsert({
+    id: user.id,
     college_slug: college?.slug ?? null,
     verification_status: college ? "verified" : "unverified",
-  }).eq("id", user.id);
+  }, {
+    onConflict: "id",
+    ignoreDuplicates: false,
+  });
 
   return NextResponse.json({
     status: college ? "verified" : "unverified",
     college_slug: college?.slug ?? null,
+    error: error?.message ?? null,
   });
 }
