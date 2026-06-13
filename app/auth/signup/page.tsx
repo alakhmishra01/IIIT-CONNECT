@@ -16,12 +16,23 @@ export default function SignupPage() {
     e.preventDefault();
     setLoading(true);
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email, password,
       options: { emailRedirectTo: `${location.origin}/auth/callback?alumni=${isAlumni}` },
     });
+    if (error) {
+      setMsg(error.message);
+      setLoading(false);
+      return;
+    }
+    // If session exists (email confirmation disabled), set up profile immediately
+    if (data.session) {
+      await fetch("/api/setup-profile", { method: "POST" });
+      window.location.href = "/onboarding";
+      return;
+    }
     setLoading(false);
-    setMsg(error ? error.message : "Check your inbox and click the confirmation link.");
+    setMsg("Check your inbox and click the confirmation link.");
   }
 
   return (
