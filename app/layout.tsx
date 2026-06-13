@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
+import AuthButton from "@/components/AuthButton";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/events" className="hover:text-white">Events</Link>
               <Link href="/clubs" className="hover:text-white">Clubs</Link>
               <Link href="/ask" className="hover:text-white">Ask a Senior</Link>
-              <Link href="/auth/login" className="btn-primary !py-1.5 text-sm">Sign in</Link>
+              <AuthButton />
             </div>
           </div>
         </nav>
